@@ -1,0 +1,181 @@
+{
+    "resourceType": "Practitioner",
+    "id": "example",
+    "text": {
+        "status": "generated"
+    },
+    "identifier": [
+        {
+            "use": "official",
+            "value": "195317"
+        },
+        {
+            "use": "official",
+            "type": {
+                "coding": [
+                    {
+                        "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                        "code": "NPI",
+                        "display": "National provider identifier"
+                    }
+                ]
+            },
+            "value": "111111"
+        },
+        {
+            "type": {
+                "coding": [
+                    {
+                        "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                        "code": "UPIN",
+                        "display": "PHYSICIAN IDENTIFICATION NUMBER"
+                    }
+                ]
+            },
+            "value": "22222"
+        },
+        {
+            "use": "official",
+            "type": {
+                "coding": [
+                    {
+                        "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                        "code": "TAX"
+                    }
+                ]
+            },
+            "value": "33333"
+        },
+        {
+            "use": "official",
+            "value": "44444"
+        },
+        {
+            "use": "official",
+            "value": "INDEPENDENT PARACTICE ASSOCIATION"
+        },
+        {
+            "use": "official",
+            "value": "555555"
+        },
+        {
+            "use": "official",
+            "value": "LOCAL PHYSICIAN ORGANIZATION"
+        },
+        {
+            "use": "official",
+            "type": {
+                "coding": [
+                    {
+                        "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                        "code": "SN",
+                        "display": "SUBSCIBER identifier"
+                    }
+                ]
+            },
+            "value": "666666"
+        },
+        {
+            "use": "official",
+            "value": "777777"
+        },
+        {
+            "use": "official",
+            "value": "ABC"
+        },
+        {
+            "use": "official",
+            "type": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/ValueSet/provider-taxonomy",
+                        "code": "103G00000X",
+                        "display": "PROVIDER_TAXONOMY_CODE "
+                    }
+                ]
+            },
+            "value": "Neuropshychologist"
+        },
+        {
+            "use": "official",
+            "type": {
+                "coding": [
+                    {
+                        "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                        "code": "BSNR",
+                        "display": "PROVIDER_LOCATION_ID"
+                    }
+                ]
+            },
+            "value": "XYZ"
+        }
+    ],
+    "active": true,
+    "name": [
+        {
+            "family": "Patel",
+            "given": [
+                "Sheena",
+                "R"
+            ],
+            "text": "OFFICE_CLERK"
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "1112224444"
+        },
+        {
+            "system": "fax",
+            "value": "1112226666"
+        },
+        {
+            "system": "email",
+            "value": "SPATEL@gmail.com"
+        }
+    ],
+    "address": [
+        {
+            "use": "billing",
+            "type": "physical",
+            "line": "123 SPATEL address 1, Suite-A address 2,Room-A address 3",
+            "city": "COLUMBIA",
+            "state": "MD",
+            "district": "MONTGOMERY",
+            "postalCode": "20905"
+        }
+    ],
+    "gender": "female",
+    "birthDate": "1980-07-12",
+    "communication": [
+        {
+            "coding": [
+                {
+                    "system": "http://hl7.org/fhir/ValueSet/languages",
+                    "code": "en"
+                }
+            ],
+            "text": "ENGLISH"
+        }
+    ],
+    "qualification": [
+        {
+            "identifier": [
+                {
+                    "use": "official",
+                    "type": {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/v2-0360",
+                                "code": "MD",
+                                "display": "Doctor of Medicine"
+                            }
+                        ]
+                    },
+                    "value": "MD"
+                }
+            ]
+        }
+    ]
+}

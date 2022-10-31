@@ -1,0 +1,152 @@
+
+
+{
+  "resourceType" : "Claim",
+  "identifier" : {
+      "use": "official",
+      "value": "{{msg.ClaimNumber}}",
+    }, 
+  "status" : "{{msg.ClaimPaymentStatus}}", 
+  "type": {
+        "coding": [
+            {
+                "system": "http://terminology.hl7.org/CodeSystem/claim-type",
+                "code": "institutional"//Should this be institutional or professional
+            }
+        ]
+    },
+  "use" : "claim", 
+  "patient" : {
+      "reference": "Patient/{{msg.CenseoID}}"
+    },
+  "billablePeriod": {
+      "start": "{{msg.ServiceFromDate_Date_of_Service | date: "yyyy-MM-dd"}}",
+      "end": "{{msg.ServiceThruDate | date: "yyyy-MM-dd"}}"
+  },
+  "created" : "{{msg.ClaimEntryDate | date: "yyyy-MM-dd"}}", 
+  "enterer" : {
+      "reference": "Practitioner/{{msg.Provider_ID}}"
+  },
+  "provider" : {
+        "reference": "Practitioner/{{msg.Provider_ID}}"
+    },
+  "priority" : { 
+    "coding": [ 
+            {"code": "normal"
+            }
+        ]   
+    },
+  "prescription" : { 
+        "reference": "MedicationRequest/{{msg.prescription.reference}}"
+    },
+  "payee" : { 
+        "type": {
+            "coding":
+                [
+                    {
+                        "code": "provider",
+                        "display": "{{msg.RenderingProviderNPI}}"
+                    }
+                ]
+        }
+  },
+  "facility" : { 
+        "identifier":{
+            "value": "{{msg.PlaceOfService}}"
+        }
+  },
+  "careTeam": [
+        {
+        "sequence": 1,
+            "provider": {
+                "reference": "Practitioner/{{msg.Provider_ID}}"
+            }
+        }
+    ],
+  "diagnosis" : [
+        { 
+        "sequence" : 1, 
+            "diagnosisCodeableConcept" : { 
+                "coding": [
+                    {
+                        "code": "{{msg.DX_1}}"
+                    }
+                ]
+            }
+        },
+        { 
+        "sequence" : 2, 
+            "diagnosisCodeableConcept" : { 
+                "coding": [
+                    {
+                        "code": "{{msg.DX_2}}"
+                    }
+                ]
+            }
+        },
+        { 
+        "sequence" : 3, 
+            "diagnosisCodeableConcept" : { 
+                "coding": [
+                    {
+                        "code": "{{msg.DX_3}}"
+                    }
+                ]
+            }
+        }
+    ],
+  "procedure": [
+    {
+      "sequence": 1,
+      "type": [
+        {
+          "coding": [
+            {
+              "code": "primary"
+            }
+          ]
+        }
+      ],
+      "date": "{{msg.ServiceFromDate_Date_of_Service | date: "yyyy-MM-dd"}}",
+      "procedureCodeableConcept": {
+        "coding": [
+          {
+            "code": "{{msg.ProcedureCode_CPTCode_Primary}}"
+          }
+        ]
+      }
+    },
+    {
+        "sequence": 2,
+        "type": [
+          {
+            "coding": [
+              {
+                "code": "secondary"
+              }
+            ]
+          }
+        ],
+        "date": "{{msg.ServiceFromDate_Date_of_Service | date: "yyyy-MM-dd"}}",
+        "procedureCodeableConcept": {
+          "coding": [
+            {
+              "code": "{{msg.ProcedureCode2}}"
+            }
+          ]
+        }
+      }
+  ],  
+  "insurance" : [
+        { /
+        "sequence" : 1, 
+        "focal" : true, 
+        "coverage" : { 
+            "reference" : "Coverage/{{msg.insurance/coverage.reference}}"
+          } 
+        }
+    ],
+  "total" :{
+    "value": "{{msg.BillAmount}}" 
+  }
+}

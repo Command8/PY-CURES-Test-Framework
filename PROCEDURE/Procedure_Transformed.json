@@ -1,0 +1,259 @@
+{
+    "resourceType": "Procedure",
+    "identifier": [
+        {
+            "use": "official",
+            "value": "G123456",
+            "assigner": {
+                "display": "Signify Health CenseoID"
+            }
+        },
+        {
+            "use": "usual",
+            "value": "123456",
+            "assigner": {
+                "display": "Member Number"
+            }
+        },
+        {
+            "use": "usual",
+            "value": 123497,
+            "assigner": {
+                "display": "Medicare Identification Number"
+            }
+        }
+    ],
+    "instantiatesCanonical": [
+        "http://hl7.org/fhir/StructureDefinition/Questionnaire"
+    ],
+    "basedOn": [
+        {
+            "reference": "CarePlan/"
+        },
+        {
+            "reference": "ServiceRequest/"
+        }
+    ],
+    "partOf": [
+        {
+            "reference": "Observation/"
+        },
+        {
+            "reference": "Procedure/"
+        }
+    ],
+    "status": "unknown",
+    "statusReason": {
+        "coding": [
+            {
+                "system": "http://snomed.info/sct"
+            }
+        ]
+    },
+    "category": {
+        "coding": [
+            {
+                "system": "http://snomed.info/sct"
+            }
+        ]
+    },
+    "code": {
+        "coding": [
+            {
+                "system": "http://snomed.info/sct",
+                "code": "90387"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "13160"
+            }
+        ]
+    },
+    "subject": {
+        "reference": "Patient/"
+    },
+    "encounter": {
+        "reference": "Encounter/"
+    },
+    "performedPeriod": {
+        "start": "2018-10-02"
+    },
+    "recorder": {
+        "reference": "Practitioner/"
+    },
+    "asserter": {
+        "reference": "Practitioner/"
+    },
+    "performer": [
+        {
+            "function": {
+                "coding": [
+                    {
+                        "system": "http://snomed.info/sct",
+                        "code": "*",
+                        "display": "*"
+                    }
+                ]
+            },
+            "actor": {
+                "reference": "Practitioner/"
+            },
+            "onBehalfOf": {
+                "reference": "Organization/"
+            }
+        }
+    ],
+    "location": {
+        "reference": "Location/"
+    },
+    "reasonCode": [
+        {
+            "coding": [
+                {
+                    "system": "http://hl7.org/fhir/ValueSet/icd-10",
+                    "code": "M54.10"
+                },
+                {
+                    "system": "http://hl7.org/fhir/ValueSet/icd-10",
+                    "code": "M54.9"
+                },
+                {
+                    "system": "http://hl7.org/fhir/ValueSet/icd-10",
+                    "code": "R06.02"
+                },
+                {
+                    "system": "http://hl7.org/fhir/ValueSet/icd-10",
+                    "code": "R06.03"
+                },
+                {
+                    "system": "http://hl7.org/fhir/ValueSet/icd-10",
+                    "code": "L03.311"
+                },
+                {
+                    "system": "http://hl7.org/fhir/ValueSet/icd-10",
+                    "code": "L03.312"
+                },
+                {
+                    "system": "http://hl7.org/fhir/ValueSet/icd-10",
+                    "code": "R65.20"
+                },
+                {
+                    "system": "http://hl7.org/fhir/ValueSet/icd-10",
+                    "code": "R65.21"
+                },
+                {
+                    "system": "http://hl7.org/fhir/ValueSet/icd-10",
+                    "code": "S22.32XA"
+                },
+                {
+                    "system": "http://hl7.org/fhir/ValueSet/icd-10",
+                    "code": "S22.33XA"
+                },
+                {
+                    "system": "http://hl7.org/fhir/ValueSet/icd-10",
+                    "code": "J86.9"
+                },
+                {
+                    "system": "http://hl7.org/fhir/ValueSet/icd-10",
+                    "code": "J86.8"
+                }
+            ]
+        }
+    ],
+    "reasonReference": [
+        {
+            "reference": "Observation/"
+        },
+        {
+            "reference": "Procedure/"
+        }
+    ],
+    "bodySite": [
+        {
+            "coding": [
+                {
+                    "system": "http://snomed.info/sct"
+                }
+            ]
+        }
+    ],
+    "outcome": {
+        "coding": [
+            {
+                "system": "http://snomed.info/sct"
+            }
+        ]
+    },
+    "report": [
+        {
+            "reference": "Composition/"
+        },
+        {
+            "reference": "DiagnosticReport/"
+        },
+        {
+            "reference": "DocumentReference/"
+        }
+    ],
+    "complication": [
+        {
+            "coding": [
+                {
+                    "system": "http://snomed.info/sct"
+                }
+            ]
+        }
+    ],
+    "complicationDetail": [
+        {
+            "reference": "Condition/"
+        }
+    ],
+    "followUp": [
+        {
+            "coding": [
+                {
+                    "system": "http://snomed.info/sct"
+                }
+            ]
+        }
+    ],
+    "note": [
+        {
+            "authorReference": {
+                "reference": "Practitioner/"
+            }
+        }
+    ],
+    "focalDevice": [
+        {
+            "action": {
+                "coding": [
+                    {
+                        "system": "http://snomed.info/sct"
+                    }
+                ]
+            },
+            "manipulated": {
+                "reference": "Device/"
+            }
+        }
+    ],
+    "usedReference": [
+        {
+            "reference": "Device/"
+        },
+        {
+            "reference": "Medication/"
+        }
+    ],
+    "usedCode": [
+        {
+            "coding": [
+                {
+                    "system": "http://snomed.info/sct"
+                }
+            ]
+        }
+    ]
+}

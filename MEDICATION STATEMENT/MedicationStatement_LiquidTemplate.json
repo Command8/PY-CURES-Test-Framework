@@ -1,0 +1,274 @@
+{
+  "resourceType": "MedicationStatement",
+  "id": "{{msg.id}}",
+  "text": {
+    "status": "generated",
+    "div": "{{msg.text.div | escape_special_chars}}"
+  },
+  "contained": [
+    {
+      "resourceType": "Medication",
+      "id": "{{msg.contained.id}}",
+      "code": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/sid/ndc",
+            "code": "{{msg.NDC_CODE}}",
+            "display": "{{msg.NDC_DESCRIPTION}}"
+          },
+        ]
+      },
+      "form": {
+        "coding": [
+          {% for c in msg.form.coding-%}
+          {
+            "system": "{{c.system}}",
+            "code": "{{c.code}}",
+            "display": "{{c.display}}"
+          },
+          {% endfor -%}
+        ]
+      },
+      "ingredient": [
+        {% for i in msg.ingredient -%}
+        {
+          "itemCodeableConcept": {
+            {% for icc in i.itemCodeableConcept -%}
+            "coding": [
+              {% for c in icc.coding-%}
+              {
+                "system": "{{c.system}}",
+                "code": "{{c.code}}",
+                "display": "{{c.display}}"
+              },
+              {% endfor -%}
+            ],
+            {% endfor -%}
+          },
+          "strength": {
+            {% for s in i.strength -%}
+            "numerator": {
+              "value": {{s.numerator.value}},
+              "system": "{{s.numerator.system}}",
+              "code": "{{s.numerator.code}}"
+            },
+            "denominator": {
+              "value": {{s.denominator.value}},
+              "system": "{{s.denominator.system}}",
+              "code": "{{s.denominator.code}}"
+            },
+            {% endfor -%}
+          }
+        },
+        {
+          "itemCodeableConcept": {
+            "coding": [
+              {% for c in icc.coding-%}
+              {
+                "system": "{{c.system}}",
+                "code": "{{c.code}}",
+                "display": "{{c.display}}"
+              }
+              {% endfor -%}
+            ]
+          },
+          "strength": {
+            {% for s in i.strength -%}
+            "numerator": {
+              "value": {{s.numerator.value}},
+              "system": "{{s.numerator.system}},
+              "code": "{{s.numerator.code}}"
+            },
+            "denominator": {
+              "value": {{s.denominator.value}},
+              "system": "{{s.denominator.system}}",
+              "code": "T{{s.denominator.code}}"
+            },
+            {% endfor -%},
+          },
+        },
+      {% endfor -%}
+      ],
+      "batch": {
+        "lotNumber": "{{msg.batch.lotNumber}}",
+        "expirationDate": "{{msg.expirationDate | date: "yyyy-MM-dd"}}"
+      }
+    }
+  ],
+  "identifier": [
+    {
+      "use": "{{msg.identifier.use}}",
+      "system": "{{msg.identifier.system}}",
+      "value": "{{msg.identifier.value}}"
+    }
+  ],
+  "basedOn": [
+      {
+        "reference": "MedicationRequest/{{msg.basedOn.reference}}"
+      }
+    ],
+   "partOf": [
+      {
+        "reference": "MedicationDispense/{{msg.partOf.reference}}"
+      }
+  ],
+  "status": "active",
+  "statusReason":{
+        "coding": [
+           {% for c in msg.coding-%}
+              {
+                "system": "http://hl7.org/fhir/ValueSet/reason-medication-status-codes",
+                "code": "{{c.code}}",
+                "display": "{{c.display}}"
+              },
+          {% endfor -%}
+        ]
+      },
+  "category": {
+    "coding": [
+      {% for c in msg.category.coding -%}
+        {
+          "system": "http://hl7.org/fhir/ValueSet/medication-statement-category",
+          "code": "{{c.code}}",
+          "display": "{{c.display}}"
+        },
+      {% endfor -%}
+    ]
+  },
+  "medicationCodeableConcept": {
+    "coding": [
+        {% for c in msg.coding-%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/reason-medication-status-codes",
+            "code": "{{c.code}}",
+            "display": "{{c.display}}"
+          },
+        {% endfor -%}
+    ],
+    "text": "{{msg.text}}"
+  },
+  "medicationReference": {
+    "reference": "Medication/{{msg.medicationReference.reference}}"
+  },
+  "subject": {
+    "reference": "Patient/{{msg.subject.reference}}",
+    "display": "{{msg.FIRSTNAME}} {{msg.MIDDLENAME}} {{msg.LASTNAME}}"
+  },
+  "context": {
+    "reference": "Encounter/{{msg.context.reference}}",
+    "display": "{{msg.context.display}}"
+  },
+  {% if msg.effectiveDateTime -%}
+    "effectiveDateTime": "{{msg.effectiveDateTime | date: "yyyy-MM-dd"}}",
+  {% endif -%},
+    {% if msg.effectivePeriod -%}
+    "effectiveDateTime": "{{msg.msg.effectivePeriod}}",
+  {% endif -%},
+  "dateAsserted": "{{msg.dateAsserted | date: "yyyy-MM-dd"}}",
+  "informationSource": {
+    "reference": "Patient/{{msg.informationSource.reference}}",
+    "display": "{{msg.informationSource.display}}"
+  },
+  "derivedFrom": [
+    {
+      "reference": "Medication/{{msg.derivedFrom.reference}}"
+    }
+  ],
+  "reasonCode": [
+    {
+      "coding": [
+        {% for c in msg.coding -%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/condition-code",
+            "code": "{{c.code}}",
+            "display": "{{c.display}}"
+          },
+        {% endfor -%}
+      ]
+    }
+  ],
+  "reasonReference": {
+    "reference": "Condition/{{msg.reasonReference.reference}}",
+    "display": "{{msg.reasonReference.display}}"
+  }, 
+  "note": [
+    {
+      "text": "{{msg.note.text}}"
+    }
+  ],
+  "dosage": [
+    {% for d in msg.dosage -%}
+    {
+      "sequence": {{d.sequence}},
+      "text": "{{d.text}}",
+      "additionalInstruction": [
+        {
+          "text": "{{d.additionalInstruction.text}}"
+        }
+      ],
+      "timing": {
+        {% for t in d.timing -%}
+        "repeat": {
+          "frequency": {{t.repeat.frequency}},
+          "period": {{t.repeat.period}},
+          "periodUnit": "{{t.repeat.periodUnit}}"
+        }
+       {% endfor -%}
+      },
+      "asNeededCodeableConcept": {
+        {% for ncc in d.asNeededCodeableConcept -%}
+        "coding": [
+          {
+            "system": "{{ncc.coding.system}}",
+            "code": "{{ncc.coding.code}}",
+            "display": "{{ncc.coding.display}}"
+          }
+        ],
+       {% endfor -%}
+      },
+      "route": {
+       {% for r in d.route -%}
+        "coding": [
+          {
+            "system": "{{r.coding.system}}",
+            "code": "{{r.coding.code}}",
+            "display": "{{r.coding.display}}"
+          }
+        ],
+       {% endfor -%}
+      },
+      "doseAndRate": [
+        {
+          "type": {
+            {% for t in d.doseAndRate.type -%}
+            "coding": [
+              {
+                "system": "{{t.coding.system}}",
+                "code": "{{t.coding.code}}",
+                "display": "{{t.coding.display}}"
+              }
+            ],
+           {% endfor -%}
+          },
+          "doseRange": {
+            {% for dr in d.doseAndRate.doseRange -%}
+            "low": {
+              "value": {{dr.low.value}},
+              "unit": "{{dr.low.unit}}",
+              "system": "{{dr.low.system}}",
+              "code": "{{dr.low.code}}"
+            },
+            "high": {
+              "value": {{dr.high.value}},
+              "unit": "{{dr.high.unit}}",
+              "system": "{{dr.high.system}}",
+              "code": "{{dr.high.code}}"
+            },
+            {% endfor -%}
+          }
+        }
+      ]
+    },
+    {% endfor -%}
+  ]
+}

@@ -1,0 +1,52 @@
+{
+    "resourceType": "MedicationStatement",
+    "text": {
+        "status": "generated"
+    },
+    "contained": [
+        {
+            "resourceType": "Medication",
+            "code": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/sid/ndc",
+                        "code": "0071-0223-23",
+                        "display": "HYDROCHLOROTHIAZIDE"
+                    }
+                ]
+            }
+        }
+    ],
+    "basedOn": [
+        {
+            "reference": "MedicationRequest/"
+        }
+    ],
+    "partOf": [
+        {
+            "reference": "MedicationDispense/"
+        }
+    ],
+    "status": "active",
+    "medicationReference": {
+        "reference": "Medication/"
+    },
+    "subject": {
+        "reference": "Patient/",
+        "display": "Minnie Disney Mouse"
+    },
+    "context": {
+        "reference": "Encounter/"
+    },
+    "informationSource": {
+        "reference": "Patient/"
+    },
+    "derivedFrom": [
+        {
+            "reference": "Medication/"
+        }
+    ],
+    "reasonReference": {
+        "reference": "Condition/"
+    }
+}

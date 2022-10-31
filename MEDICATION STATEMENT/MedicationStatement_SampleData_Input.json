@@ -1,0 +1,15 @@
+{  "CLAIM_NUMBER": "12345",
+    "MEMBER_NUMBER": "99999",
+    "NDC_CODE": "0071-0223-23",
+    "NDC_DESCRIPTION": "HYDROCHLOROTHIAZIDE",
+    "HICN": "99999999",
+    "CLIENTNAME": "FutureCare",
+    "CLIENTID": "12345",
+    "DATE_OF_SERVICE": "2022-08-01",
+    "QUANTITY": 100,
+    "PAID_AMT": 25.00,
+    "CENSEOID": "12345abc",
+    "FIRSTNAME": "Minnie",
+    "MIDDLENAME": "Disney",
+    "LASTNAME": "Mouse"
+}

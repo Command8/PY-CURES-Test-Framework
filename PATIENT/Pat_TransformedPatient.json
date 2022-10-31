@@ -1,0 +1,155 @@
+{
+    "resourceType": "Patient",
+    "identifier": [
+        {
+            "use": "usual",
+            "type": {
+                "coding": [
+                    {
+                        "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                        "code": "DFN"
+                    }
+                ]
+            },
+            "value": "G9451865"
+        },
+        {
+            "use": "usual",
+            "type": {
+                "coding": [
+                    {
+                        "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                        "code": "PI"
+                    }
+                ]
+            },
+            "value": "123123"
+        },
+        {
+            "use": "usual",
+            "type": {
+                "coding": [
+                    {
+                        "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                        "code": "SS"
+                    }
+                ]
+            },
+            "value": "888888888"
+        }
+    ],
+    "active": true,
+    "name": [
+        {
+            "family": "MACHO",
+            "given": [
+                "ARTHUR",
+                "GILBERT"
+            ],
+            "suffix": [
+                "MO"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "use": "home",
+            "value": "9870907908"
+        },
+        {
+            "system": "sms",
+            "use": "mobile",
+            "value": "1233123121"
+        },
+        {
+            "system": "other",
+            "use": "temp",
+            "value": "*****"
+        },
+        {
+            "system": "email",
+            "use": "home",
+            "value": "test@gmail.com"
+        }
+    ],
+    "gender": "male",
+    "birthDate": "2022-01-01",
+    "address": [
+        {
+            "use": "home",
+            "type": "postal",
+            "line": "test address 1, test address 2",
+            "city": "CHICAGO",
+            "state": "ILLINOIS",
+            "postalCode": "60148",
+            "district": "DUPAGE",
+            "country": "USA"
+        },
+        {
+            "use": "billing",
+            "type": "physical",
+            "line": "test1, test2",
+            "city": "WHEATON",
+            "state": "IL",
+            "postalCode": "60189"
+        }
+    ],
+    "contact": [
+        {
+            "relationship": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/ValueSet/patient-contactrelationship"
+                    }
+                ]
+            },
+            "organization": {
+                "reference": "Organization/"
+            },
+            "telecom": [
+                {
+                    "system": "phone",
+                    "use": "home",
+                    "value": "222222852"
+                }
+            ],
+            "address": {
+                "use": "home",
+                "type": "postal",
+                "line": "Contact, Secondary"
+            }
+        }
+    ],
+    "managingOrganization": {
+        "reference": "Organization/131",
+        "display": "WellCare_Medicaid_Office"
+    },
+    "generalPractitioner": [
+        {
+            "reference": "Practioner/",
+            "display": "CAREFUL LENDERS"
+        }
+    ],
+    "extension": [
+        {
+            "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity",
+            "extension": [
+                {
+                    "url": "text",
+                    "valueString": "AFRICAN"
+                }
+            ]
+        }
+    ],
+    "communication": [
+        {
+            "language": {
+                "coding": {
+                    "system": "http://hl7.org/fhir/ValueSet/languages",
+                    "display": "ENGLISH"
+                }
+            }
+        }
+    ]
+}

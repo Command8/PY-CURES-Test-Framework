@@ -1,0 +1,291 @@
+{
+  "resourceType": "Encounter",
+  "id": "{{msg.id}}",
+  "text": {
+    "status": "generated",
+    "div": "{{msg.text.div | escape_special_chars}}"
+  },
+  "identifier": [
+    {
+      "use": "{{msg.identifier.use}}",
+      "system": "{{msg.identifier.system}}",
+      "value": "{{msg.identifier.value}}"
+    
+    }
+  ],
+ "status" :
+  {% if msg.Status == 'planned' -%}
+    "planned",
+     {% elsif msg.Status == 'arrived' -%}
+    "arrived",
+     {% elsif msg.Status == 'triaged' -%}
+    "triaged",
+     {% elsif msg.Status == 'in-progress' -%}
+    "in-progress",
+     {% elsif msg.Status == 'onleave' -%}
+    "onleave",
+     {% elsif msg.Status == 'finished' -%}
+    "finished",
+     {% elsif msg.Status == 'cancelled' -%}
+    "cancelled",
+     {% elsif msg.Status == 'other' -%}
+    "unknown",
+     {% elsif code -%}
+     {% else %}
+         "",
+     {% endif -%}
+  
+ 
+  "statusHistory": [{
+    "status": "{{msg.statusHistory.status}}",
+    "period": {
+    "start" : "{{msg.statusHistory.start}}",
+    },
+  }],
+
+
+  "class": {
+    "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+    "code": "IMP",
+    "display": "inpatient encounter"
+  },
+   
+  "classHistory": [{
+    "status": "{{msg.classHistory.status}}",
+    "period": {
+    "start" : "{{msg.classHistory.start}}",
+    },
+  }],
+  
+  "type": [
+    {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "{{msg.EncounterType.code}}",
+          "display": "{{msg.EncounterType}}",
+        }
+      ]
+    }
+  ],
+  "serviceType": 
+    {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "{{msg.serviceType.code}}",
+          "display": "{{msg.serviceType}}",
+        }
+      ]
+    },
+
+
+   "priority": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "310361003",
+        "display": "Non-urgent cardiological admission"
+      }
+    ]
+  },
+ 
+  "subject": {
+    "reference": "Patient/{{msg.PatientId}}",
+    "display": "{{msg.subject.display}}"
+  },
+  "episodeOfCare": {
+    "reference": "EpisodeOfCare/{{msg.EpisodeOfCareId}}",
+    "display": "{{msg.episodeOfCare.display}}"
+  },
+  "basedOn": {
+    "reference": "ServiceRequest/{{msg.basedOn}}",
+    "display": "{{msg.basedOn.display}}"
+  },
+  
+  "participant": [
+
+    {
+    "type": 
+    {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "{{msg.type.code}}",
+          "display": "{{msg.type}}",
+        }
+      ]
+    },
+
+      "individual": {
+        "reference": "Practitioner/{{msg.PCP_ID}}",
+        "display": "{{p.individual.display}}"
+      },
+     "period": {
+    "start" : "{{msg.DateOfService}}",
+},
+
+    }
+
+  ],
+"appointment": {
+    "reference": "Appointment/{{msg.apptId}}",
+    "display": "{{msg.appointment.display}}"
+  },
+ "period": {
+  "start" : "{{msg.AdmissionDate}}",
+},
+
+  "length": {
+    "value": "{{msg.length.value}}",
+    "unit": "min",
+    "system": "http://unitsofmeasure.org",
+    "code": "min"
+  },
+   "reasonCode": [
+   
+    {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "{{msg.ReasonCode.code}}",
+          "display": "{{msg.ReasonCode}}"
+        }
+      ]
+    }
+ 
+  ],
+  "reasonReference": {
+    "reference": "Condition/{{msg.reasonref}}",
+    "display": "{{msg.reasonRefernece}}"
+  },
+   
+"diagnosis":[
+    {
+      "condition": {
+        "display": "Complications from Roel's TPF chemotherapy on January 28th, 2013"
+      },
+      "use": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/diagnosis-role",
+            "code": "{{msg.DiagnosisCode}}",
+            "display": "{{msg.AdmitDiag}}"
+          }
+        ],
+        "text": "{{msg.AdmitDiag}}"
+      },
+      "rank": 1
+    },
+],
+ "account": {
+    "reference": "Account/{{msg.account}}",
+    "display": "{{msg.accountName}}"
+  },
+ 
+  "hospitalization": {
+    "preAdmissionIdentifier": {
+      "use": "official",
+      "system": "http://www.amc.nl/zorgportal/identifiers/pre-admissions",
+      "value": "{{msg.preAdmissionIdentifier.value}}"
+    },
+"origin": {
+    "reference": "Location/{{msg.locationId}}",
+    "display": "{{msg.FacilityName}}"
+  },
+    "admitSource": {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "{{msg.admitSource.coding.code}}",
+          "display": "{{msg.AdmitSource}}"
+        }
+      ]
+    },
+"reAdmission": {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "{{msg.admitSource.coding.code}}",
+          "display": "{{msg.readmission}}"
+        }
+      ]
+    },
+"dietPreference": {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "{{msg.admitSource.coding.code}}",
+          "display": "{{msg.readmission}}"
+        }
+      ]
+    },
+    
+  "specialCourtesy": {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "{{msg.admitSource.coding.code}}",
+          "display": "{{msg.readmission}}"
+        }
+      ]
+    },
+    "specialArrangement": {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "{{msg.admitSource.coding.code}}",
+          "display": "{{msg.readmission}}"
+        }
+      ]
+    },
+  
+  "destination": {
+    "reference": "Location/{{msg.locationId}}",
+    "display": "{{msg.FacilityName}}"
+  },
+
+  
+    "dischargeDisposition": {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "{{msg.dischargeDisposition.coding.code}}",
+          "display": "{{msg.dischargeDisposition.coding.display}}",
+        }
+      ]
+    }
+  },
+  
+ "location": {
+  "location": {
+    "reference": "Location/{{msg.locationId}}",
+    "display": "{{msg.FacilityName}}"
+  },
+  "status":"planned",
+   
+  "physicalType": {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "{{msg.dischargeDisposition.coding.code}}",
+          "display": "{{msg.dischargeDisposition.coding.display}}",
+        }
+      ]
+    },
+     "period": {
+    "start" : "{{msg.DateOfService}}",
+},
+
+    },
+
+ "serviceProvider": {
+    "reference": "Organization/{{msg.orgId}}",
+    "display": "{{msg.FacilityName}}"
+  },
+  "partOf": {
+    "reference": "Encounter/{{msg.encId}}",
+    "display": "{{msg.encId}}"
+  },
+
+ }

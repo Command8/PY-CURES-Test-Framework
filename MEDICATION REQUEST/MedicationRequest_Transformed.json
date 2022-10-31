@@ -1,0 +1,86 @@
+{
+    "resourceType": "MedicationRequest",
+    "text": {
+        "status": "generated"
+    },
+    "contained": [
+        {
+            "resourceType": "Medication"
+        }
+    ],
+    "identifier": [
+        {
+            "value": "12345abc"
+        }
+    ],
+    "status": "active",
+    "intent": "order",
+    "reportedReference": {
+        "reference": "Practitioner/"
+    },
+    "medicationCodeableConcept": {
+        "coding": [
+            {
+                "system": "http://hl7.org/fhir/ValueSet/medication-codes",
+                "code": "9999",
+                "display": "Nystatin"
+            }
+        ]
+    },
+    "medicationReference": {
+        "reference": "Medication/"
+    },
+    "subject": {
+        "reference": "Patient/"
+    },
+    "encounter": {
+        "reference": "Encounter/"
+    },
+    "supportingInformation": {
+        "reference": "Resource/"
+    },
+    "authoredOn": "2022-08-01",
+    "requester": {
+        "reference": "Practitioner/"
+    },
+    "performer": {
+        "reference": "Practitioner/"
+    },
+    "recorder": {
+        "reference": "Practitioner/"
+    },
+    "reasonReference": {
+        "reference": "Condition/"
+    },
+    "basedOn": [
+        {
+            "reference": "MedicationRequest/"
+        }
+    ],
+    "insurance": [
+        {
+            "reference": "Coverage/"
+        }
+    ],
+    "dosageInstruction": [
+        {
+            "sequence": 1,
+            "doseAndRate": [
+                {
+                    "doseQuantity": {
+                        "value": 30
+                    }
+                }
+            ]
+        }
+    ],
+    "priorPrescription": {
+        "reference": "Condition/"
+    },
+    "detectedIssue": {
+        "reference": "Condition/"
+    },
+    "eventHistory": {
+        "reference": "Provenance/"
+    }
+}

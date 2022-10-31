@@ -1,0 +1,150 @@
+{
+    "resourceType": "Claim",
+    "identifier": {
+        "use": "official",
+        "value": "99911999"
+    },
+    "status": "active",
+    "type": {
+        "coding": [
+            {
+                "system": "http://terminology.hl7.org/CodeSystem/claim-type",
+                "code": "institutional"
+            }
+        ]
+    },
+    "use": "claim",
+    "patient": {
+        "reference": "Patient/1234"
+    },
+    "billablePeriod": {
+        "start": "2022-08-12",
+        "end": "2022-08-13"
+    },
+    "created": "2022-08-01",
+    "enterer": {
+        "reference": "Practitioner/abc1234"
+    },
+    "provider": {
+        "reference": "Practitioner/abc1234"
+    },
+    "priority": {
+        "coding": [
+            {
+                "code": "normal"
+            }
+        ]
+    },
+    "prescription": {
+        "reference": "MedicationRequest/"
+    },
+    "payee": {
+        "type": {
+            "coding": [
+                {
+                    "code": "provider",
+                    "display": "12345678"
+                }
+            ]
+        }
+    },
+    "facility": {
+        "identifier": {
+            "value": "Home"
+        }
+    },
+    "careTeam": [
+        {
+            "sequence": 1,
+            "provider": {
+                "reference": "Practitioner/abc1234"
+            }
+        }
+    ],
+    "diagnosis": [
+        {
+            "sequence": 1,
+            "diagnosisCodeableConcept": {
+                "coding": [
+                    {
+                        "code": "G54.1"
+                    }
+                ]
+            }
+        },
+        {
+            "sequence": 2,
+            "diagnosisCodeableConcept": {
+                "coding": [
+                    {
+                        "code": "G54.2"
+                    }
+                ]
+            }
+        },
+        {
+            "sequence": 3,
+            "diagnosisCodeableConcept": {
+                "coding": [
+                    {
+                        "code": "G54.3"
+                    }
+                ]
+            }
+        }
+    ],
+    "procedure": [
+        {
+            "sequence": 1,
+            "type": [
+                {
+                    "coding": [
+                        {
+                            "code": "primary"
+                        }
+                    ]
+                }
+            ],
+            "date": "2022-08-12",
+            "procedureCodeableConcept": {
+                "coding": [
+                    {
+                        "code": "64405"
+                    }
+                ]
+            }
+        },
+        {
+            "sequence": 2,
+            "type": [
+                {
+                    "coding": [
+                        {
+                            "code": "secondary"
+                        }
+                    ]
+                }
+            ],
+            "date": "2022-08-12",
+            "procedureCodeableConcept": {
+                "coding": [
+                    {
+                        "code": "64450"
+                    }
+                ]
+            }
+        }
+    ],
+    "insurance": [
+        {
+            "sequence": 1,
+            "focal": true,
+            "coverage": {
+                "reference": "Coverage/"
+            }
+        }
+    ],
+    "total": {
+        "value": "250.00"
+    }
+}

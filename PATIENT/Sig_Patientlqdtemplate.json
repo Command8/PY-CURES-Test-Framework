@@ -1,0 +1,229 @@
+{
+	"resourceType": "Patient",
+	"id": "{{ msg.PatientId | to_json_string | generate_uuid }}",
+    "identifier": [
+	   {
+		  "use": "usual",
+		  "type": {
+			   "coding": [
+			   {
+				   "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+				   "code": "DFN"
+			   }
+                  ]
+              },
+           
+              "value": "{{ msg.CENSEOID }}"
+          },
+		   {
+		  "use": "usual",
+		  "type": {
+			   "coding": [
+			   {
+				   "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+				   "code": "PI"
+			   }
+                  ]
+              },
+           
+              "value": "{{ msg.Member_Number }}"
+          },
+		   {
+		  "use": "usual",
+		  "type": {
+			   "coding": [
+			   {
+				   "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+				   "code": "SS"
+			   }
+                  ]
+              },
+           
+              "value": "{{ msg.MEMBER_SSN }}"
+          }
+      ],
+  
+      "active": true,
+      "name": [
+          {
+              "family": "{{ msg.MEMBER_LAST_NAME }}",
+              "given": [
+                  "{{ msg.MEMBER_FIRST_NAME }}",
+				  "{{ msg.MEMBER_MIDDLE_NAME }}"
+              ],
+              "suffix": [
+                  "{{ msg.SUFFIX }}"
+              ],
+  
+          }
+      ],
+      "telecom": [
+          {
+              "system": "phone",
+			  "use": "home",
+              "value": "{{msg.MEMBER_TELEPHONE}}",
+              },
+		  {	
+              "system": "sms",
+			  "use": "mobile",
+              "value": "{{msg.MEMBER_CELL}}",
+              },
+		  
+		  {	
+              "system": "other",
+			  "use": "temp",
+              "value": "{{msg.SECONDARYPHONE}}",
+              },
+		   {
+              "system": "email",
+  				"use": "home",
+              "value": "{{msg.MEMBER_EMAIL}}",
+              },
+  
+      ],
+   "gender":   
+          {% if msg.MEMBER_GENDER == 'M' -%}
+	          "male",
+          {% elsif msg.MEMBER_GENDER == 'F' -%}
+	          "female",
+          {% elsif msg.MEMBER_GENDER == 'U' -%}
+	          "unknown",
+          {% elsif code -%}
+  .	        "other",
+          {% else %}
+              "",
+          {% endif -%}
+	  
+      "birthDate": "{{ msg.MEMBER_DATE_OF_BIRTH | split:" " | first }}",
+      "deceasedBoolean": "{{msg.DeceasedBoolean}}",
+      "deceasedDateTime" : "{{msg.DeceasedDateTime}}",
+	  "maritalStatus" : {
+		  "coding":
+		[
+		  {
+		"system" : "{{msg.MARITALSTATUSSYSTEM}}",
+	  "code" : "{{msg.MARITALSTATUSCODE}}", 
+		"display" : "{{msg.MEMBER_MARITALSTATUS}}",
+  }],
+	  "text": "{{msg.MEMBER_MARITALSTATUS}}",
+		  },
+       "address": [
+  
+          {
+              "use": "home",
+			  "type": "postal",
+              "line": "{{msg.MEMBER_ADDRESS1}}, {{msg.MEMBER_ADDRESS2}}",
+              "city": "{{msg.MEMBER_CITY}}",
+			  "state":"{{msg.MEMBER_STATE}}",
+              "postalCode": "{{msg.MEMBER_ZIP}}",
+			  "district": "{{msg.MEMBER_COUNTY}}",
+			  "country": "USA",
+	   },
+		{
+              "use": "billing",
+			  "type": "physical",
+              "line": "{{msg.MEMBER_MAIL_ADDRESS1}}, {{msg.MEMBER_MAIL_ADDRESS2}}",
+              "city": "{{msg.MEMBER_MAIL_CITY}}",
+			  "state":"{{msg.MEMBER_MAIL_STATE}}",
+              "postalCode": "{{msg.MEMBER_MAIL_ZIP}}",
+	   },
+      ],  
+	  "multipleBirthBoolean": "{{msg.MultipleBirth}}",
+	  "multipleBirthInteger": "{{msg.MultipleBirthInteger}}",
+	  "photo" : [{
+		  
+	  }],
+	  "contact": [ {
+		
+		"relationship" : {
+			"coding":
+		  [
+			{
+		  "system" : "http://hl7.org/fhir/ValueSet/patient-contactrelationship",
+		"code" : "{{msg.RELATIONSHIPCODE}}", 
+		  "display" : "{{msg.RELATIONSHIP}}",
+	}],
+		"text": "{{msg.RELATIONSHIP}}",
+			},
+	
+		
+	
+		  "name": 
+		                {
+		                    "family": "{{ msg.lastname }}",
+		                    "given": [
+		                        "{{ msg.firstname }}"
+		                    ]
+		                },
+		     "gender": "{{msg.kinGender}}",
+		    "organization": {
+		                "reference": "Organization/{{msg.contOrgId}}",
+		                "display": "{{msg.organization}}"
+		            },
+		          "period":{
+			                "start": "{{ msg.startDate | add_hyphens_date }}",
+			                "end": "{{ msg.endDate | add_hyphens_date }}",
+			            },
+			         "telecom": [
+			           
+			            {
+			                "system": "phone",
+							"use" : "home",
+			                "value": "{{msg.MEMBER_SECONDARY_CONTACT_PHONE}}",
+			            }
+			            
+			        ],
+			         "address":     
+			            {
+			                "use": "home",
+							"type": "postal",
+			                "line": "{{msg.MEMBER_SECONDARY_CONTACT}}",
+			                "city": "{{msg.KinAddress.City}}",
+			                "postalCode": "{{msg.ZipCode}}",
+			            },
+			  
+		}],	
+    
+     "managingOrganization": {
+          "reference": "Organization/{{msg.CLIENTID}}",	
+          "display": "{{msg.CLIENTNAME}}"
+      },
+      
+  
+   
+  "generalPractitioner": [
+         
+          {
+              "reference": "Practioner/{{msg.PCP_ID}}",
+              "display": "{{msg.PCP_FIRSTNAME}} {{msg.PCP_LASTNAME}}"
+              },
+      ],
+  "extension":[
+	  {
+         "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity",
+		  "extension": [
+			  {
+				   "url": "text",
+				   "valueString":"{{msg.ETHNICITY}}"
+			  }
+		  ]}
+  
+          
+       
+      ],
+  "communication":[
+         
+          { 
+              "language":{
+              "coding":
+              {
+                       "system":"http://hl7.org/fhir/ValueSet/languages",
+                      "display":"{{msg.PREFERREDSPOKENLANGUAGE}}",
+  
+              }
+          }}
+          
+       
+      ],
+  
+  }

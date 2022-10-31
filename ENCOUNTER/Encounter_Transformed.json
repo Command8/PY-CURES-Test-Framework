@@ -1,0 +1,185 @@
+{
+    "resourceType": "Encounter",
+    "text": {
+        "status": "generated"
+    },
+    "status": "unknown",
+    "class": {
+        "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+        "code": "IMP",
+        "display": "inpatient encounter"
+    },
+    "type": [
+        {
+            "coding": [
+                {
+                    "system": "http://snomed.info/sct",
+                    "display": "Urgent"
+                }
+            ]
+        }
+    ],
+    "serviceType": {
+        "coding": [
+            {
+                "system": "http://snomed.info/sct"
+            }
+        ]
+    },
+    "priority": {
+        "coding": [
+            {
+                "system": "http://snomed.info/sct",
+                "code": "310361003",
+                "display": "Non-urgent cardiological admission"
+            }
+        ]
+    },
+    "subject": {
+        "reference": "Patient/17812312"
+    },
+    "episodeOfCare": {
+        "reference": "EpisodeOfCare/e112312"
+    },
+    "basedOn": {
+        "reference": "ServiceRequest/b145342"
+    },
+    "participant": [
+        {
+            "type": {
+                "coding": [
+                    {
+                        "system": "http://snomed.info/sct"
+                    }
+                ]
+            },
+            "individual": {
+                "reference": "Practitioner/11123987"
+            }
+        }
+    ],
+    "appointment": {
+        "reference": "Appointment/12896798"
+    },
+    "period": {
+        "start": "2022-09-07"
+    },
+    "length": {
+        "unit": "min",
+        "system": "http://unitsofmeasure.org",
+        "code": "min"
+    },
+    "reasonCode": [
+        {
+            "coding": [
+                {
+                    "system": "http://snomed.info/sct",
+                    "display": "The patient is treated for a tumor."
+                }
+            ]
+        }
+    ],
+    "reasonReference": {
+        "reference": "Condition/r179"
+    },
+    "diagnosis": [
+        {
+            "condition": {
+                "display": "Complications from Roel's TPF chemotherapy on January 28th, 2013"
+            },
+            "use": {
+                "coding": [
+                    {
+                        "system": "http://terminology.hl7.org/CodeSystem/diagnosis-role",
+                        "code": "R50.9",
+                        "display": "Admission diagnosis"
+                    }
+                ],
+                "text": "Admission diagnosis"
+            },
+            "rank": 1
+        }
+    ],
+    "account": {
+        "reference": "Account/"
+    },
+    "hospitalization": {
+        "preAdmissionIdentifier": {
+            "use": "official",
+            "system": "http://www.amc.nl/zorgportal/identifiers/pre-admissions"
+        },
+        "origin": {
+            "reference": "Location/l124",
+            "display": "Childrens hospital"
+        },
+        "admitSource": {
+            "coding": [
+                {
+                    "system": "http://snomed.info/sct",
+                    "display": "Smith"
+                }
+            ]
+        },
+        "reAdmission": {
+            "coding": [
+                {
+                    "system": "http://snomed.info/sct"
+                }
+            ]
+        },
+        "dietPreference": {
+            "coding": [
+                {
+                    "system": "http://snomed.info/sct"
+                }
+            ]
+        },
+        "specialCourtesy": {
+            "coding": [
+                {
+                    "system": "http://snomed.info/sct"
+                }
+            ]
+        },
+        "specialArrangement": {
+            "coding": [
+                {
+                    "system": "http://snomed.info/sct"
+                }
+            ]
+        },
+        "destination": {
+            "reference": "Location/l124",
+            "display": "Childrens hospital"
+        },
+        "dischargeDisposition": {
+            "coding": [
+                {
+                    "system": "http://snomed.info/sct"
+                }
+            ]
+        }
+    },
+    "location": {
+        "location": {
+            "reference": "Location/l124",
+            "display": "Childrens hospital"
+        },
+        "status": "planned",
+        "physicalType": {
+            "coding": [
+                {
+                    "system": "http://snomed.info/sct"
+                }
+            ]
+        }
+    },
+    "serviceProvider": {
+        "reference": "Organization/",
+        "display": "Childrens hospital"
+    },
+    "partOf": {
+        "reference": "Encounter/123542",
+        "display": "123542"
+    }
+}

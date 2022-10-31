@@ -1,0 +1,43 @@
+To create a new repository:
+    1) Click Repos under CURES project menu
+    2) Click + > New repository > enter repository name > leave Add a README checked > search the type of file to be added
+    3) Click Create (repsository should follow naming convention : app-name-with-dashes-when-you-need-a-space [also hopefully never that long of a repo name])
+
+Clone git repository:
+    1) Click Clone in the top right
+    2) Copy URL
+    3) Open the Command Pallette in VSCode (ctrl + shift + P or command + shift + p) > type Clone (don't choose 'clone from GitHub' rather just Git:Clone)
+    4) Paste URL in command pallete directly and hit Enter 
+    5) Select repository folder location on your local computer
+    6) Generate credentials under Clone repository in DevOps (if required)
+    7) Copy password then paste > Enter
+    8) Open your repo once cloned in VSCode > Navigate repo under Explorer or switch branches under lower left corner to choose your own as needed.
+    ***Important to refresh your repo often to capture changes
+
+Adding new files to repo in DevOps:
+    1) Choose branch
+    2) Select folder location
+    3) Click 2 dots to thr right of Clone
+    4) Click New to add new folder or file  OR Upload files 
+
+Best Pratices:
+    - Each project should have each own repo
+    - Create a pull requests to review changes and complete code reviews
+    - Create branch policies under specific policies before deploying code related to a user story
+    - Review commits and share comments under Pull requests
+
+Branching - Commit Code Workflow:  
+    FHIR-DEVELOPMENT-TEAM
+    From <yourBranchName> -- create a folder for each fhir resource(ie, Patient, Practitioner, Practitioner) To<FHIR-DEVELOPMENT-TEAM>
+        If code changes are needed.  Add a task to the Devops UserStory and return From <yourPeerReviewBranch> -- To <yourBranchName>
+            commit any comments and suggestions do a pull request
+
+        else if no code changes check of the task in the Devops UserStory and forward to <fhir-json-Review-QA> Branch and send a pull request to QA.
+
+    fhir-json-Review-QA
+        If code changes are needed.  Add a Bug to the Devops UserStory and return From < fhir-json-Review-QA> -- To <theAuthorsBranchName>
+            Then FHIR-DEVELOPMENT-TEAM Author makes code changes and code goes From <theAuthorsBranchName> -- To<yourPeerReviewBranch>
+            if code changes are resolve and pass peer review forward to <fhir-json-Review-QA> Branch.
+            if code changes are resolved by QA close the Bug do a pull request and push code to the Master Branch
+
+    CURES UI-Development TEAM

@@ -1,0 +1,232 @@
+{
+	"resourceType": "Practitioner",
+	"id": "example",
+	"text": {
+		"status": "generated",
+		"div": "{{msg.text.div | escape_special_chars }}"
+	  },
+  
+    "identifier": [
+	  
+  {
+		   "use": "official",
+		   "value": "{{msg.PCP_ID }}"
+	  },
+  
+	  {
+		  "use": "official",
+		  "type": {
+			   "coding": [
+					 {
+				   "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+				   "code": "NPI",
+				   "display" : "National provider identifier"
+					 }
+                         ]
+                    },
+           
+          "value": "{{ msg.PROVIDER_NPI }}"
+      },
+  
+	  {
+		  "type": {
+			   "coding": [
+					 {
+				   "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+				   "code": "UPIN",
+				   "display" : "PHYSICIAN IDENTIFICATION NUMBER"
+					 }
+                         ]
+                    },
+          "value": "{{ msg.PROVIDER_PIN }}"
+      },
+  
+  
+	  
+  
+	  {
+		  "use": "official",
+		  "type": {
+			   "coding": [
+			   {
+				   "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+				   "code": "TAX"
+			   }
+                        ]
+                 },
+           
+          "value": "{{ msg.PROVIDER_TAXID}}"
+       },
+  
+  {
+		   "use": "official",
+		   "value": "{{msg.IPA }}"
+	  },
+  
+		 {
+		   "use": "official",
+		   "value": "{{msg.IPA_IDENTIFIER }}"
+	  },
+  
+	{
+		   "use": "official",
+		   "value": "{{msg.LPO }}"
+	  },
+  
+	  {
+		   "use": "official",
+		   "value": "{{ msg.LPO_IDENTIFIER }}"
+	  },
+  
+  {
+		  "use": "official",
+		  "type": {
+			   "coding": [
+					 {
+				   "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+				   "code": "SN",
+				   "display" : "SUBSCIBER identifier"
+					 }
+                         ]
+                    },
+           
+          "value": "{{ msg.SUBSCRIBER_ID }}"
+      },
+  {
+		   "use": "official",
+		   "value": "{{ msg.PCP_PROVIDER_ID }}"
+	  },
+  
+	  {
+		   "use": "official",
+		   "value": "{{ msg.PROVIDER_ID }}"
+	  },
+  
+	  {
+		  "use": "official",
+		  "type": {
+			   "coding": [
+			   {
+				   "system": "http://hl7.org/fhir/ValueSet/provider-taxonomy",
+				   "code": "103G00000X",
+				   "display" : "PROVIDER_TAXONOMY_CODE ",
+			   }
+                         ]
+              },
+           
+              "value": "{{msg.PROVIDER_TAXONOMY_CODE }}"
+      },
+  
+  
+	  {
+		  "use": "official",
+		  "type": {
+			   "coding": [
+			   {
+				   "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+				   "code": "BSNR",
+				   "display" : "PROVIDER_LOCATION_ID"
+			   }
+                         ]
+              },
+           
+              "value": "{{msg.PROVIDER_LOCATION_ID }}"
+          }
+      ],
+      "active": true,
+  
+      "name": [
+          {  
+		  "family": "{{ msg.PROVIDER_LASTNAME }}",
+          "given": [
+                  "{{ msg.PROVIDER_FIRSTNAME }}","{{ msg.PROVIDER_MIDDLE_INITIAL}}"
+                   ],
+           "prefix": [
+                  "{{ msg.PROVIDER_PREFIX}}"
+                     ],
+			"text": "{{ msg.OFFICE_CONTACT_NAME }}"  
+          }
+      ],
+      "telecom": [
+          {
+              "system": "phone",
+              "value": "{{msg.PROVIDER_PHONE}}",
+			  "use": "work"
+              },
+  
+  {
+			  "system": "fax",
+              "value": "{{msg.PROVIDER_FAX}}",
+			  "use": "work"
+              },
+		   {
+              "system": "email",
+              "value": "{{msg.PROVIDER_EMAIL}}",
+			  "use": "work"
+              }
+      ],  
+      "address": [
+  
+          {
+              "use": "billing",
+			  "type": "physical",
+              "line": "{{msg.PROVIDER_ADDRESS1}}, {{msg.PROVIDER_ADDRESS2}},{{msg.PROVIDER_ADDRESS3}}",
+              "city": "{{msg.PROVIDER_CITY}}",
+			  "state":"{{msg.PROVIDER_STATE}}",
+			  "district": "{{msg.PROVIDER_COUNTY}}",
+			  "postalCode": "{{msg.PROVIDER_ZIPCode}}"
+	   },
+	  
+      ], 
+	   "gender":   
+          {% if msg.PROVIDER_GENDER == 'M' -%}
+	          "male",
+          {% elsif msg.PROVIDER_GENDER == 'F' -%}
+	          "female",
+          {% elsif msg.PROVIDER_GENDER == 'O' -%}
+	          "other",
+          {% elsif code -%}
+  .	        "unknown",
+          {% else %}
+              "",
+          {% endif -%}
+	  "birthDate": "{{ msg.PROVIDER_DOB| split:" " | first}}",
+	 "communication":  [   
+			{ 
+           "coding":[
+					  {
+                      "system":"http://hl7.org/fhir/ValueSet/languages",
+                      "code": "en",
+                       }
+					],
+  
+                  "text": "{{msg.PROVIDER_LANGUAGE}}"
+              },    
+       
+      ],
+  
+	  "qualification": [
+		  {
+		  "identifier": [
+			{
+		  "use": "official",
+		  "type": {
+			   "coding": [
+			   {
+				   "system": "http://terminology.hl7.org/CodeSystem/v2-0360",
+				   "code": "MD",
+				   "display" : "Doctor of Medicine"
+			   }
+						 ]
+				  },
+           
+              "value": "{{ msg.PROVIDER_QUALIFICATION}}"
+			 },
+					   ],
+		  }
+					],
+  
+  
+	}
+	
+  

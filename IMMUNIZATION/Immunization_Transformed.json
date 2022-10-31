@@ -1,0 +1,26 @@
+{
+    "resourceType": "Immunization",
+    "identifier": [
+        {
+            "use": "official",
+            "value": "J12345",
+            "assigner": {
+                "display": "Signify Health CenseoID"
+            }
+        }
+    ],
+    "status": "completed",
+    "vaccineCode": {
+        "text": "Influenza? Yes"
+    },
+    "patient": {
+        "reference": "Patient/"
+    },
+    "occurrenceString": "unknown",
+    "note": [
+        {
+            "time": "2021-07-16",
+            "text": "Immunization Review Varicella? Yes"
+        }
+    ]
+}

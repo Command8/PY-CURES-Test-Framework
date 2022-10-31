@@ -1,0 +1,18 @@
+{
+    "DATEOFSERVICE": "20210716",
+    "CENSEOID": "J12345",
+    "CLIENTID": "96",
+    "LASTNAME": "*",
+    "FIRSTNAME": "*",
+    "DOB": "1950-01-01",
+    "SECTIONDISPLAYTEXT": "Immunization Review",
+    "QUESTIONTEXT": "Influenza?",
+    "QUESTIONTEXT2": "Varicella?",
+    "ANSWERTEXT": "Yes",
+    "id": "",
+    "_rid": "==",
+    "_self": "dbs/ej1FAA==/colls/=/docs/ej1FAMMa5UcCAAAAAAAABA==/",
+    "_etag": "\"1a0097d2-0000-0300-0000-6442dd80000\"",
+    "_attachments": "attachments/",
+    "_ts": 9999999
+}

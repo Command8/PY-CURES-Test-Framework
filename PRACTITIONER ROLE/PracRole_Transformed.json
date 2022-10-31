@@ -1,0 +1,109 @@
+{
+    "resourceType": "PractitionerRole",
+    "id": "example",
+    "text": {
+        "status": "generated"
+    },
+    "identifier": [
+        {
+            "use": "official",
+            "value": "195317"
+        }
+    ],
+    "active": "true",
+    "period": [
+        {
+            "start": "2015-01-01",
+            "end": "2023-12-31"
+        }
+    ],
+    "practitioner": [
+        {
+            "reference": "Practitioner/id",
+            "display": "SHEENA PATEL"
+        }
+    ],
+    "organization": {
+        "reference": "Organization/ABC",
+        "display": "ABC"
+    },
+    "code": [
+        {
+            "coding": [
+                {
+                    "system": "http://terminology.hl7.org/CodeSystem/v2-0286",
+                    "code": "CP"
+                }
+            ],
+            "text": "Consultiong Provider"
+        }
+    ],
+    "specialty": [
+        {
+            "coding": [
+                {
+                    "system": "http://hl7.org/fhir/practitioner-specialty",
+                    "code": "06"
+                }
+            ],
+            "text": "Cardiology"
+        }
+    ],
+    "location": {
+        "reference": "Location/South Wing, second floor",
+        "display": "South Wing, second floor"
+    },
+    "healthcareService": {
+        "reference": "healthcareService/PSYCH WARD",
+        "display": "PSYCH WARD"
+    },
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "1112224444",
+            "use": "work"
+        },
+        {
+            "system": "phone",
+            "value": "1112225555",
+            "use": "home"
+        },
+        {
+            "system": "pager",
+            "value": "1112227777",
+            "use": "mobile"
+        },
+        {
+            "system": "fax",
+            "value": "1112226666",
+            "use": "work"
+        }
+    ],
+    "availableTime": [
+        {
+            "daysOfWeek": [
+                "mon",
+                "tue",
+                "wed"
+            ],
+            "availableStartTime": "09:00:00",
+            "availableEndTime": "16:00:00"
+        }
+    ],
+    "notAvailable": [
+        {
+            "description": "Dr. on vacation",
+            "during": {
+                "start": "2022-08-22",
+                "end": "2022-08-25"
+            }
+        }
+    ],
+    "availabilityExceptions": "HOLIDAYS",
+    "endpoint": [
+        {
+            "reference": "Endpoint/Providing endpoint access",
+            "display": "Providing endpoint access"
+        }
+    ]
+}

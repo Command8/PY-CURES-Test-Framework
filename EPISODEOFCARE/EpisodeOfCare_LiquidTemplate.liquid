@@ -1,0 +1,110 @@
+{
+"resourceType": "EpisodeOfCare",
+  
+  "identifier" : [
+    {
+        "use": "official",
+        "value": "{{msg.CENSEOID}}",
+        "assigner":{
+            "display":"Signify Health CenseoID"
+                    }
+    }
+                 ],
+
+  "status": "{{msg.STATUS_CODE}}",
+ 
+  "statusHistory" : [
+    { 
+    
+    {% if msg.STATUS_CODE == "" -%}
+      "status": "inactive",
+      {% else -%}
+      "status": "active",
+    {% endif -%},
+
+    "period" : {  
+         "start": "{{msg.DATE_OF_SERVICE | date: "yyyy-MM-dd"}}",
+         
+               } 
+    }
+                   ],
+
+
+  "type": [
+    {
+       "coding": [
+        {
+            "system": "http://hl7.org/fhir/ValueSet/episodeofcare-type",
+            "code": "{{msg.type.coding.code}}",
+            "display": "{{msg.type.coding.display}}"
+        }
+                  ],  
+                  "text": "{{msg.type.text}}"
+        }
+            ],
+
+ "diagnosis" : [
+  { 
+    "condition" : { 
+        "reference": "Condition/{{msg.condition.reference}}", 
+                  },              
+    "role":
+     {
+       "coding": [
+        {
+            "system": "http://http://hl7.org/fhir/ValueSet/diagnosis-role",
+            "code": "{{msg.role.coding.code}}",
+            "display": "{{msg.role.coding.display}}"
+        }
+                  ],  
+                  "text": "{{msg.role.text}}"
+      },
+
+        {% if msg.DX_1 == "" -%}
+        "rank": "0",
+          {% else -%}
+          "rank": "1",
+        {% endif -%}
+    }
+               ],
+
+  "patient": {
+    "reference": "Patient/{{msg.patient.reference}}",
+    "display": "{{msg.MEMBER_NAME}}"
+  },
+
+  "managingOrganization": {
+    "reference": "Organization/{{msg.managingOrganization.reference}}",
+    "display": "{{msg.managingOrganization.reference}}"
+      },
+
+  "period" : {  
+         "start": "{{ msg.DATE_OF_SERVICE | date: "yyyy-MM-dd"}}"
+    },
+
+  "referralRequest": [
+    {
+      "reference": "ServiceRequest/{{msg.referralRequest.reference}}",
+        "display": "{{msg.referralRequest.reference}}"
+    }
+          ],
+
+  "careManager": 
+    {
+      "reference": "Practitioner/{{msg.careManager.reference}}",
+        "display": "{{msg.careManager.reference}}"
+    },
+  "team": [
+    {
+      "reference": "CareTeam/{{msg.team.reference}}",
+        "display": "{{msg.team.reference}}"
+    }
+  ],
+   "account": [
+    {
+      "reference": "Account/{{msg.accountt.reference}}",
+        "display": "{{msg.accountt.reference}}"
+    }
+  ],
+  
+}

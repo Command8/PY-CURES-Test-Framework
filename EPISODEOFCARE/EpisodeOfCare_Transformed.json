@@ -1,0 +1,73 @@
+{
+    "resourceType": "EpisodeOfCare",
+    "identifier": [
+        {
+            "use": "official",
+            "value": "9898B4",
+            "assigner": {
+                "display": "Signify Health CenseoID"
+            }
+        }
+    ],
+    "status": "active",
+    "statusHistory": [
+        {
+            "status": "active",
+            "period": {
+                "start": "2021-10-29"
+            }
+        }
+    ],
+    "type": [
+        {
+            "coding": [
+                {
+                    "system": "http://hl7.org/fhir/ValueSet/episodeofcare-type"
+                }
+            ]
+        }
+    ],
+    "diagnosis": [
+        {
+            "condition": {
+                "reference": "Condition/"
+            },
+            "role": {
+                "coding": [
+                    {
+                        "system": "http://http://hl7.org/fhir/ValueSet/diagnosis-role"
+                    }
+                ]
+            },
+            "rank": "1"
+        }
+    ],
+    "patient": {
+        "reference": "Patient/",
+        "display": "John Smith"
+    },
+    "managingOrganization": {
+        "reference": "Organization/"
+    },
+    "period": {
+        "start": "2021-10-29"
+    },
+    "referralRequest": [
+        {
+            "reference": "ServiceRequest/"
+        }
+    ],
+    "careManager": {
+        "reference": "Practitioner/"
+    },
+    "team": [
+        {
+            "reference": "CareTeam/"
+        }
+    ],
+    "account": [
+        {
+            "reference": "Account/"
+        }
+    ]
+}

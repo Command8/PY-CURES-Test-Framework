@@ -1,0 +1,263 @@
+{
+  "resourceType" : "Immunization",
+  "identifier" : [
+    {
+          "use": "official",
+          "value": "{{msg.CENSEOID}}",
+          "assigner":{
+              "display":"Signify Health CenseoID"
+          }
+    }
+  ],
+  {% if msg.ANSWERTEXT == "Yes"-%} 
+  "status" : "completed", 
+  {% else %}
+  "status" : "not-done", 
+  {% endif %}
+  {% if msg.statusReason != null -%}
+  "statusReason" : { 
+    "coding": [
+          {
+            "system": "http://snomed.info/sct",
+            "code": "{{msg.statusReason.coding.code}}",
+            "display": "{{msg.statusReason.coding.display}}"
+          },
+    ],
+    "text": "{{msg.statusReason.text}}"
+  }, 
+  {% endif %}
+  "vaccineCode" : {  
+    {% if msg.vaccineCode != null -%}
+    "coding": [
+          {
+            "system": "http://hl7.org/fhir/sid/cvx",
+            "code": "{{msg.vaccineCode.coding.code}}",
+            "display": "{{msg.vaccineCode.coding.display}}"
+          },
+    ],
+    {% endif %}
+    "text": "{{msg.QUESTIONTEXT}} {{msg.ANSWERTEXT}}" 
+  },
+  "patient": {
+    "reference": "Patient/{{msg.PATIENT_FHIR_ID}}",
+    "display": "{{msg.MEMBER_NAME}}",
+    "type": "{{msg.patient.type}}",
+    "identifier": "{{msg.patient.identifier}}"
+  },
+  {% if msg.encounterDate != null -%}
+  "encounter": {
+    "reference": "Encounter/{{msg.encounter.reference}}",
+    "display": "{{msg.encounter.display}}",
+    "type": "{{msg.encounter.type}}",
+    "identifier": "{{msg.encounter.identifier}}"
+  },
+  {% endif -%}
+  "occurrenceDateTime" : "{{msg.occurrenceDateTime | date:"yyyy-MM-dd"}}",
+  "occurrenceString" : "unknown",
+  "recorded" : "{{msg.recorded}}", 
+  "primarySource" : "{{msg.primarySource}}", 
+  {% if msg.reportOrigin != null -%}
+  "reportOrigin" : { 
+    "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/immunization-origin",
+            "code": "{{msg.reportOrigin.coding.code}}",
+            "display": "{{msg.reportOrigin.coding.display}}"
+          },
+    ],
+    "text": "{{msg.reportOrigin.text}}" 
+   }, 
+  {% endif -%}
+  "location" : { 
+    "reference": "{{msg.location.reference}}",
+    "display": "{{msg.location.display}}",
+    "type": "{{msg.location.type}}",
+    "identifier": "{{msg.location.identifier}}"
+   }, 
+  "manufacturer" : { 
+    "reference": "{{msg.manufacturer.reference}}",
+    "display": "{{msg.manufacturer.display}}",
+    "type": "{{msg.manufacturer.type}}",
+    "identifier": "{{msg.manufacturer.identifier}}"
+  }, 
+  "lotNumber" : "{{msg.lotNumber}}", 
+  "expirationDate" : "{{msg.expiredDate | date:"yyyy-MM-dd"}}", 
+  {% if msg.site != null -%}
+  "site" : { 
+    "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/v3-ActSite",
+            "code": "{{msg.site.coding.code}}",
+            "display": "{{msg.site.coding.display}}"
+          },
+    ],
+    "text": "{{msg.site.text}}"  
+  }, 
+  {% endif -%}
+  {% if msg.route != null -%}
+  "route" : { 
+    "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/v3-RouteOfAdministration",
+            "code": "{{msg.route.coding.code}}",
+            "display": "{{msg.route.coding.display}}"
+          },
+    ],
+    "text": "{{msg.route.text}}"  
+  }, 
+  {% endif -%}
+  "doseQuantity" : { 
+    "value": "{{msg.doseQuantity.value}}"
+  }, 
+  "performer" : [
+    {   
+      {% if msg.function != null -%}
+      "function" : { 
+          "coding": [
+              {
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0443",
+                  "code": "{{msg.performer.function.coding.code}}",
+                  "display": "{{msg.performer.function.coding.display}}"
+              },
+          ],
+          "text": "{{msg.performer.function.text}}"  
+          }, 
+      {% endif -%}  
+      "actor" : {
+          "reference": "{{msg.performer.actor.reference}}",
+          "display": "{{msg.performer.actor.display}}",
+          "type": "{{msg.performer.actor.type}}",
+          "identifier": "{{msg.performer.actor.identifier}}" 
+      } 
+    }
+  ],
+  "note" : [
+    {
+      "authorReference": {
+        "reference": "{{msg.note.authorReference.reference}}",
+        "display": "{{msg.note.authorReference.display}}"
+      },
+      "authorString": "{{msg.note.authorString}}",
+      "time": "{{msg.DATEOFSERVICE | add_hyphens_date}}",
+      "text": "{{msg.SECTIONDISPLAYTEXT}} {{msg.QUESTIONTEXT2}} {{msg.ANSWERTEXT}}"
+    }
+  ],
+  {% if msg.reasonCode != null -%}
+  "reasonCode" : [
+    { 
+        "coding": [
+            {
+                "system": "http://snomed.info/sct",
+                "code": "{{msg.reasonCode.coding.code}}",
+                "display": "{{msg.reasonCode.coding.display}}"
+            },
+        ],
+        "text": "{{msg.reasonCode.text}}"  
+    }
+  ], 
+  {% endif -%} 
+  "reasonReference" : [
+    {  
+        "reference": "{{msg.reasonReference.reference}}",
+        "display": "{{msg.reasonReference.display}}",
+        "type": "{{msg.reasonReference.type}}",
+        "identifier": "{{msg.reasonReference.identifier}}"
+    },
+    {  
+        "reference": "{{msg.reasonReference.reference}}",
+        "display": "{{msg.reasonReference.display}}",
+        "type": "{{msg.reasonReference.type}}",
+        "identifier": "{{msg.reasonReference.identifier}}"
+    } 
+  ], 
+  "isSubpotent" : "{{msg.isSubpotent}}", 
+  {% if msg.subpotentReason != null -%}
+  "subpotentReason" : [
+    { 
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/immunization-subpotent-reason",
+            "code": "{{msg.subpotentReason.coding.code}}",
+            "display": "{{msg.subpotentReason.coding.display}}"
+          },
+    ],
+    "text": "{{msg.subpotentReason.text}}"  
+    }
+  ], 
+  {% endif -%} 
+  "education" : [
+    { 
+        "documentType" : "{{msg.education.documentType}}", 
+        "reference" : "{{msg.education.reference}}", 
+        "publicationDate" : "{{msg.education.publicationDate | date: "yyyy-MM-dd"}}",
+        "presentationDate" : "{{msg.education.presentationDate | date: "yyyy-MM-dd"}}" 
+    }
+  ],
+  {% if msg.programEligibility != null -%}
+  "programEligibility" : [
+    { 
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/immunization-program-eligibility",
+            "code": "{{msg.programEligibility.coding.code}}",
+            "display": "{{msg.programEligibility.coding.display}}"
+          },
+    ],
+    "text": "{{msg.programEligibility.text}}"  
+    }
+  ], 
+  {% endif -%} 
+  {% if msg.fundingSource != null -%}
+  "fundingSource" : { 
+    "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/immunization-funding-source",
+            "code": "{{msg.fundingSource.coding.code}}",
+            "display": "{{msg.fundingSource.coding.display}}"
+          },
+    ],
+    "text": "{{msg.fundingSource.text}}"  
+  }, 
+  {% endif -%} 
+  "reaction" : [
+    { 
+        "date" : "{{msg.reaction.date | date: "yyyy-MM-dd"}}",
+        "detail" : { 
+            "reference": "{{msg.reaction.detail.reference}}",
+            "display": "{{msg.reaction.detail.display}}",
+            "type": "{{msg.reaction.detail.type}}",
+            "identifier": "{{msg.reaction.detail.identifier}}"
+        }, 
+        "reported" : "{{msg.reaction.reported}}"
+    }
+  ],
+  "protocolApplied" : [
+    { 
+        "series" : "{{msg.protocolApplied.series}}",
+        "authority" : { 
+            "reference": "{{msg.protocolApplied.authority.reference}}",
+            "display": "{{msg.protocolApplied.authority.display}}",
+            "type": "{{msg.protocolApplied.authority.type}}",
+            "identifier": "{{msg.protocolApplied.authority.identifier}}"
+        }, 
+        {% if msg.targetDisease != null -%}
+        "targetDisease" : [
+            { 
+                "coding": [
+                    {
+                        "system": "http://snomed.info/sct",
+                        "code": "{{msg.protocolApplied.targetDisease.coding.code}}",
+                        "display": "{{msg.protocolApplied.fundingSource.coding.display}}"
+                    },
+                ],
+                "text": "{{msg.protocolApplied.targetDisease.text}}"  
+             }
+        ], 
+        {% endif -%} 
+        "doseNumberPositiveInt" : "{{msg.doseNumberPositiveInt}}",
+        "doseNumberString" : "{{msg.doseNumberString}}",
+        "seriesDosesPositiveInt" : "{{msg.seriesDosesPositiveInt}}",
+        "seriesDosesString" : "{{msg.seriesDosesString}}"
+    }
+  ]
+}

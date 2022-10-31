@@ -1,0 +1,534 @@
+{
+  "resourceType" : "Procedure",
+  "identifier" : [
+    {
+        "use": "official",
+        "value": "{{msg.CENSEOID}}",
+        "assigner":{
+            "display":"Signify Health CenseoID"
+        }
+    },
+    {
+        "use": "usual",
+        "value": "{{msg.MEMBER_NUMBER}}",
+        "assigner":{
+            "display":"Member Number"
+        }
+    },
+    {
+        "use": "usual",
+        "value": {{msg.HICN}},
+        "assigner":{
+            "display":"Medicare Identification Number"
+        }
+    }
+  ],
+  "instantiatesCanonical" : [
+        "http://hl7.org/fhir/StructureDefinition/Questionnaire"
+  ],
+  "instantiatesUri": [
+        "{{msg.instantiatesUri}}"
+  ], 
+  "basedOn": [
+        {
+            "reference": "CarePlan/{{msg.basedOn.reference}}"
+        },
+        {
+            "reference": "ServiceRequest/{{msg.basedOn.reference}}"
+        }
+  ],
+  "partOf" : [
+        {
+            "reference": "Observation/{{msg.partOf.reference}}"
+        },
+        {
+            "reference": "Procedure/{{msg.partOf.reference}}"
+        } 
+  ], 
+  "status" : "unknown",
+  "statusReason" : {
+        "coding": [
+        {
+            "system": "http://snomed.info/sct",
+            "code": "{{msg.statusReason.coding.code}}",
+            "display": "{{msg.statusReason.coding.display}}",
+        }
+    ],
+    "text": "{{msg.statusReason.text}}"
+  },
+  "category" : { 
+        "coding": [
+        {
+            "system": "http://snomed.info/sct",
+            "code": "{{msg.category.coding.code}}",
+            "display": "{{msg.category.coding.display}}",
+        }
+    ],a
+    "text": "{{msg.category.text}}"
+  },
+  "code" : { 
+        "coding": [
+        {
+            "system": "http://snomed.info/sct",
+            "code": "{{msg.CPTCODE_PRIMARY}}",
+            "display": "{{msg.code.coding.display}}",
+        },
+        {
+            "system": "http://snomed.info/sct",
+            "code": "{{msg.PROCEDURE_CODE_2}}",
+            "display": "{{msg.code.coding.display}}",
+        }
+    ],
+    "text": "{{msg.code.text}}"
+  },
+  "subject" : {
+        "reference": "Patient/{{msg.subject.reference}}"
+  },
+  "encounter" : {
+        "reference": "Encounter/{{msg.encounter.reference}}"
+  },
+  "performedDateTime" : "{{msg.DATE_OF_SERVICE | date: "yyyy-MM-dd"}}",
+  "performedPeriod" : {
+    "start": "{{msg.DATE_OF_SERVICE | date: "yyyy-MM-dd"}}",
+    "end": "{{msg.effectivePeriod.end | date: "yyyy-MM-dd"}}"
+  },
+  "performedString" : "{{msg.performedString}}",
+  "performedAge" : "{{msg.performedAge}}",
+  "performedRange" :{
+        "low": {
+              "value": "{{msg.performedRange.low.value}}",
+              "unit": "{{msg.performedRange.low.unit}}",
+              "system": "{{msg.performedRange.low.system}}",
+              "code": "{{msg.performedRange.low.code}}"
+            },
+        "high": {
+            "value": "{{msg.performedRangee.high.value}}",
+            "unit": "{{msg.performedRange.high.unit}}",
+            "system": "{{msg.performedRange.high.system}}",
+            "code": "{{msg.performedRange.high.code}}"
+        }
+    },
+  "recorder" : { 
+        "reference": "Practitioner/{{msg.recorder.reference}}"
+  }, 
+  "asserter" : { 
+        "reference": "Practitioner/{{msg.asserter.reference}}"
+  }, 
+  "performer" : [
+    { 
+        "function" : { 
+            "coding": [
+                {
+                    "system": "http://snomed.info/sct",
+                    "code": "{{msg.SPECIALTY_CODE}}",
+                    "display": "{{msg.SPECIALTY_NAME}}",
+                }
+            ],
+        },
+        "actor" : { 
+            "reference": "Practitioner/{{msg.performer.actor.reference}}"
+        },
+        "onBehalfOf" : { 
+            "reference": "Organization/{{msg.performer.onBehalfOf.reference}}"
+        }
+    }
+  ],
+  "location" : { 
+        "reference": "Location/{{msg.location.reference}}"
+  },
+  "reasonCode": [
+    {
+      "coding": [
+        {% if msg.DX_1 != ""-%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/icd-10",
+            "code": "{{msg.DX_1}}",
+            "display": "{{reasonCode.coding.display}}"
+          },
+        {% else %}
+        "",
+        {% endif -%}
+        {% if msg.DX_2 != ""-%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/icd-10",
+            "code": "{{msg.DX_2}}",
+            "display": "{{reasonCode.coding.display}}"
+          },
+        {% else %}
+        "",
+        {% endif -%}
+        {% if msg.DX_3 != ""-%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/icd-10",
+            "code": "{{msg.DX_3}}",
+            "display": "{{reasonCode.coding.display}}"
+          },
+        {% else %}
+        "",
+        {% endif -%}
+        {% if msg.DX_4 != ""-%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/icd-10",
+            "code": "{{msg.DX_4}}",
+            "display": "{{reasonCode.coding.display}}"
+          },
+        {% else %}
+        "",
+        {% endif -%}
+        {% if msg.DX_5 != ""-%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/icd-10",
+            "code": "{{msg.DX_5}}",
+            "display": "{{reasonCode.coding.display}}"
+          },
+        {% else %}
+        "",
+        {% endif -%}
+        {% if msg.DX_6 != ""-%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/icd-10",
+            "code": "{{msg.DX_6}}",
+            "display": "{{reasonCode.coding.display}}"
+          },
+        {% else %}
+        "",
+        {% endif -%}
+        {% if msg.DX_7 != ""-%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/icd-10",
+            "code": "{{msg.DX_7}}",
+            "display": "{{reasonCode.coding.display}}"
+          },
+        {% else %}
+        "",
+        {% endif -%}
+        {% if msg.DX_8 != ""-%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/icd-10",
+            "code": "{{msg.DX_8}}",
+            "display": "{{reasonCode.coding.display}}"
+          },
+        {% else %}
+        "",
+        {% endif -%}
+        {% if msg.DX_9 != ""-%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/icd-10",
+            "code": "{{msg.DX_9}}",
+            "display": "{{reasonCode.coding.display}}"
+          },
+        {% else %}
+        "",
+        {% endif -%}
+        {% if msg.DX_10 != ""-%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/icd-10",
+            "code": "{{msg.DX_10}}",
+            "display": "{{reasonCode.coding.display}}"
+          },
+        {% else %}
+        "",
+        {% endif -%}
+        {% if msg.DX_11 != ""-%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/icd-10",
+            "code": "{{msg.DX_11}}",
+            "display": "{{reasonCode.coding.display}}"
+          },
+        {% else %}
+        "",
+        {% endif -%}
+        {% if msg.DX_12 != ""-%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/icd-10",
+            "code": "{{msg.DX_12}}",
+            "display": "{{reasonCode.coding.display}}"
+          },
+        {% else %}
+        "",
+        {% endif -%}
+        {% if msg.DX_13 != ""-%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/icd-10",
+            "code": "{{msg.DX_13}}",
+            "display": "{{reasonCode.coding.display}}"
+          },
+        {% else %}
+        "",
+        {% endif -%}
+        {% if msg.DX_14 != ""-%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/icd-10",
+            "code": "{{msg.DX_14}}",
+            "display": "{{reasonCode.coding.display}}"
+          },
+        {% else %}
+        "",
+        {% endif -%}
+        {% if msg.DX_15 != ""-%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/icd-10",
+            "code": "{{msg.DX_15}}",
+            "display": "{{reasonCode.coding.display}}"
+          },
+        {% else %}
+        "",
+        {% endif -%}
+        {% if msg.DX_16 != ""-%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/icd-10",
+            "code": "{{msg.DX_16}}",
+            "display": "{{reasonCode.coding.display}}"
+          },
+        {% else %}
+        "",
+        {% endif -%}
+        {% if msg.DX_17 != ""-%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/icd-10",
+            "code": "{{msg.DX_17}}",
+            "display": "{{reasonCode.coding.display}}"
+          },
+        {% else %}
+        "",
+        {% endif -%}
+        {% if msg.DX_18 != ""-%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/icd-10",
+            "code": "{{msg.DX_18}}",
+            "display": "{{reasonCode.coding.display}}"
+          },
+        {% else %}
+        "",
+        {% endif -%}
+        {% if msg.DX_19 != ""-%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/icd-10",
+            "code": "{{msg.DX_19}}",
+            "display": "{{reasonCode.coding.display}}"
+          },
+        {% else %}
+        "",
+        {% endif -%}
+        {% if msg.DX_20 != ""-%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/icd-10",
+            "code": "{{msg.DX_20}}",
+            "display": "{{reasonCode.coding.display}}"
+          },
+        {% else %}
+        "",
+        {% endif -%}
+        {% if msg.DX_21 != ""-%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/icd-10",
+            "code": "{{msg.DX_21}}",
+            "display": "{{reasonCode.coding.display}}"
+          },
+        {% else %}
+        "",
+        {% endif -%}
+        {% if msg.DX_22 != ""-%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/icd-10",
+            "code": "{{msg.DX_22}}",
+            "display": "{{reasonCode.coding.display}}"
+          },
+        {% else %}
+        "",
+        {% endif -%}
+        {% if msg.DX_23 != ""-%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/icd-10",
+            "code": "{{msg.DX_23}}",
+            "display": "{{reasonCode.coding.display}}"
+          },
+        {% else %}
+        "",
+        {% endif -%}
+        {% if msg.DX_24 != ""-%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/icd-10",
+            "code": "{{msg.DX_24}}",
+            "display": "{{reasonCode.coding.display}}"
+          },
+        {% else %}
+        "",
+        {% endif -%}
+        {% if msg.DX_25 != ""-%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/icd-10",
+            "code": "{{msg.DX_25}}",
+            "display": "{{reasonCode.coding.display}}"
+          },
+        {% else %}
+        "",
+        {% endif -%}
+        {% if msg.DX_26 != ""-%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/icd-10",
+            "code": "{{msg.DX_26}}",
+            "display": "{{reasonCode.coding.display}}"
+          },
+        {% else %}
+        "",
+        {% endif -%}
+        {% if msg.DX_27 != ""-%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/icd-10",
+            "code": "{{msg.DX_27}}",
+            "display": "{{reasonCode.coding.display}}"
+          },
+        {% else %}
+        "",
+        {% endif -%}
+        {% if msg.DX_28 != ""-%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/icd-10",
+            "code": "{{msg.DX_28}}",
+            "display": "{{reasonCode.coding.display}}"
+          },
+        {% else %}
+        "",
+        {% endif -%}
+        {% if msg.DX_29 != ""-%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/icd-10",
+            "code": "{{msg.DX_29}}",
+            "display": "{{reasonCode.coding.display}}"
+          },
+        {% else %}
+        "",
+        {% endif -%}
+        {% if msg.DX_30 != ""-%}
+          {
+            "system": "http://hl7.org/fhir/ValueSet/icd-10",
+            "code": "{{msg.DX_30}}",
+            "display": "{{reasonCode.coding.display}}"
+          },
+        {% else %}
+        "",
+        {% endif -%}
+      ]
+    }
+  ],
+  "reasonReference" : [
+    {
+        "reference": "Observation/{{msg.reasonReference.reference}}"
+    },
+    {
+        "reference": "Procedure/{{msg.reasonReference.reference}}"
+    } 
+  ], 
+  "bodySite" : [
+    { 
+     "coding": [
+                {
+                    "system": "http://snomed.info/sct",
+                    "code": "{{msg.bodySite.coding.code}}",
+                    "display": "{{msg.bodySite.coding.display}}"
+                }
+            ],
+     "text": "{{msg.bodySite.coding.code.text}}"
+    }
+  ], 
+  "outcome" : { 
+    "coding": [
+            {
+                "system": "http://snomed.info/sct",
+                "code": "{{msg.outcome.coding.code}}",
+                "display": "{{msg.outcome.coding.display}}"
+            }
+    ],
+    "text": "{{msg.outcome.code.text}}"
+  }, 
+  "report" : [
+    {
+        "reference": "Composition/{{msg.report.reference}}"
+    },
+    {
+        "reference": "DiagnosticReport/{{msg.report.reference}}"
+    }, 
+    {
+        "reference": "DocumentReference/{{msg.report.reference}}"
+    } 
+  ],
+  "complication" : [
+    { 
+        "coding": [
+            {
+                "system": "http://snomed.info/sct",
+                "code": "{{msg.complication.coding.code}}",
+                "display": "{{msg.complication.coding.display}}"
+            }
+        ],
+    "text": "{{msg.complication.code.text}}"
+    }
+  ], 
+  "complicationDetail" : [
+    {
+        "reference": "Condition/{{msg.complicationDetail.reference}}"
+    },
+  ], 
+  "followUp" : [
+    { 
+        "coding": [
+                {
+                    "system": "http://snomed.info/sct",
+                    "code": "{{msg.followUp.coding.code}}",
+                    "display": "{{msg.followUp.coding.display}}"
+                }
+            ],
+    "text": "{{msg.followUp.code.text}}"
+    }
+  ], 
+  "note" : [
+    {
+      "authorReference": {
+        "reference": "Practitioner/{{msg.note.authorReference.reference}}",
+        "display": "{{msg.note.authorReference.display}}"
+      },
+      "authorString": "{{msg.note.authorString}}",
+      "time": "{{msg.note.time | date: "yyyy-MM-dd"}}",
+      "text": "{{msg.note.text}}"
+    }
+  ],
+  "focalDevice" : [
+    { 
+        "action" : { 
+            "coding": 
+                [
+                    {
+                        "system": "http://snomed.info/sct",
+                        "code": "{{msg.focalDevice.action.coding.code}}",
+                        "display": "{{msg.focalDevice.action.coding.display}}"
+                    }
+                ],
+                "text": "{{msg.focalDevice.action.code.text}}"
+        }, 
+        "manipulated" : { 
+            "reference": "Device/{{msg.manipulated.reference}}"
+        }
+    }
+  ],
+  "usedReference" : [
+        { 
+            "reference": "Device/{{msg.usedReference.reference}}"
+        },
+        {
+            "reference": "Medication/{{msg.usedReference.reference}}"
+        }
+  ],
+  "usedCode" : [
+        { 
+            "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "{{msg.usedCode.coding.code}}",
+                            "display": "{{msg.usedCode.coding.display}}"
+                        }
+                    ],
+            "text": "{{msg.usedCode.text}}"
+        }
+    ]
+}

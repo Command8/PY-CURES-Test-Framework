@@ -1,0 +1,147 @@
+{
+  "resourceType": "Coverage",
+  "id": "{{msg.id}}",
+  "text": {
+     "status": "generated",
+     "div": "{{msg.text.div | escape_special_chars }}"
+          },
+
+  "identifier": [
+      {
+      "use": "official",
+		  "value": "{{msg.PLAN_NUMBER }}"
+      },
+      {
+      "use": "official",
+		  "value": "{{msg.HICN }}"
+      },
+    ],
+
+  "status": "{{msg.COVERAGE_STATUS}}",
+
+  "type": {
+      "coding": [
+        {
+        "system": "https://terminology.hl7.org/3.1.0/ValueSet-v3-ActCoverageTypeCode.html",
+        "code": "{{msg.COVERAGE_TYPE }}",
+        "display": "{{msg.COVERAGE_TYPE_DESC }}"
+        }
+                 ]
+          },
+
+   "policyHolder": {
+       "reference": "Oraganization/",
+       "display": "{{msg.POLICY_HOLDER}}"
+    },
+
+   "subscriber": {
+     "reference": "Patient/",
+     "display": "{{msg.SUBSCRIBER}}"
+    },
+
+  "subscriberId": "{{msg.CMSID_HIC_Number}}",
+     
+                
+   "beneficiary": {
+     "reference": "Patient/",
+     "display": "{{msg.BENEFICIARY}}"
+    },
+
+  "dependent": "{{msg.DEPENDENT}}",
+
+  "relationship": {
+    "coding": [
+      {
+       "system": "http://hl7.org/fhir/ValueSet/subscriber-relationship",
+        "code": "{{ msg.RELATIONSHIP }}"
+      }
+              ]
+  },
+
+  "period": {
+             "start": "{{ msg.COVERAGE_START_DATE }}",
+             "end": "{{ msg.COVERAGE_STOP_DATE }}"
+  },
+
+  "payor": [
+     {
+      "reference": "Organization/",
+      "display": "{{msg.PAYOR}}"
+     }
+  ],
+
+  "class": [
+    {
+      "type": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/coverage-class",
+            "code": "{{ msg.PLAN_TYPE}}"
+           
+
+          }
+                  ]
+              },
+      "value": "{{ msg.PLAN_VALUE}}",
+      "name": "{{ msg.PLAN_DESCRIPTION }}"
+    }
+  ],
+
+  "order": "{{ msg.ORDER }}",
+
+  "network": "{{ msg.NETWORK }}",
+
+    "costToBeneficiary": [
+    {
+      "type": {
+        "coding": [
+            {
+            "system": "http://terminology.hl7.org/CodeSystem/coverage-copay-type",
+            "code": "{{ msg.COST_TO_BENEFICIARY_TYPE }}",
+            "display": "{{msg.COST_TO_BENEFICIARY_TYPE_DESC}}"
+             }
+                  ]
+               }, 
+
+ {% if msg.COST_QUANTITY_VALUE -%}
+    "valueQuantity": {
+          "value": "{{msg.COST_QUANTITY_VALUE}}",
+          "code": "{{msg.COST_QUANTITY_CURRENCY}}"
+                    },
+ {% endif -%},       
+
+{% if msg.COST_MONEY_VALUE -%}
+    "valueMoney": {
+         "value": "{{ msg.COST_MONEY_VALUE}}",
+            "currency": "{{ msg.COST_MONEY_CURRENCY }}"
+                    },
+ {% endif -%},
+
+    "exception": [
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/ex-coverage-financial-exception",
+                "code": "{{ msg.BENEFICIARY_EXCEPTION_TYPE }}"
+              }
+                      ]
+                   },
+          "period": {
+            "start": "{{ msg.BENEFICIARY_EXCEPTION_PERIOD_START }}",
+            "end": "{{ msg.BENEFICIARY_EXCEPTION_PERIOD_END }}"
+                    }
+        }
+                     ]
+    }
+  ],
+
+  "subrogation" : "{{ msg.SUBROGATION}}",
+   
+  "contract" : [
+    { 
+      "reference": "Contract/",
+      "display": "{{ msg.CONTRACT}}"
+     }
+  ]
+}

@@ -1,0 +1,214 @@
+{
+    "resourceType": "Observation",
+    "identifier": [
+        {
+            "use": "official",
+            "value": "J123456",
+            "assigner": {
+                "display": "Signify Health CenseoID"
+            }
+        },
+        {
+            "use": "usual",
+            "value": "C12345",
+            "assigner": {
+                "display": "Medicare Identification Number"
+            }
+        }
+    ],
+    "basedOn": [
+        {
+            "reference": "CarePlan/"
+        },
+        {
+            "reference": "MedicationRequest/"
+        }
+    ],
+    "partOf": [
+        {
+            "reference": "Immunization/"
+        },
+        {
+            "reference": "MedicationDispense/"
+        },
+        {
+            "reference": "MedicationStatement/"
+        },
+        {
+            "reference": "Procedure/"
+        }
+    ],
+    "status": "final",
+    "category": [
+        {
+            "coding": [
+                {
+                    "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                    "code": "laboratory",
+                    "display": "Laboratory"
+                }
+            ]
+        }
+    ],
+    "code": {
+        "coding": [
+            {
+                "system": "http://loinc.org",
+                "code": "4548-4"
+            }
+        ],
+        "text": "R_A1C"
+    },
+    "subject": {
+        "reference": "Patient/"
+    },
+    "focus": [
+        {
+            "reference": "Procedure/"
+        }
+    ],
+    "encounter": {
+        "reference": "Encounter/"
+    },
+    "effectiveDateTime": "2021-03-17",
+    "issued": "2021-03-23",
+    "performer": [
+        {
+            "reference": "Practitioner/"
+        }
+    ],
+    "valueQuantity": {
+        "value": "4.8",
+        "unit": "Percent",
+        "system": "http://unitsofmeasure.org"
+    },
+    "dataAbsentReason": {
+        "coding": [
+            {
+                "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason"
+            }
+        ]
+    },
+    "interpretation": [
+        {
+            "coding": [
+                {
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                    "code": "N",
+                    "display": "Normal"
+                }
+            ]
+        }
+    ],
+    "note": [
+        {
+            "text": "TEST"
+        }
+    ],
+    "bodySite": {
+        "coding": [
+            {
+                "system": "http://snomed.info/sct"
+            }
+        ]
+    },
+    "method": {
+        "coding": [
+            {
+                "system": "http://snomed.info/sct"
+            }
+        ]
+    },
+    "specimen": {
+        "reference": "Specimen/"
+    },
+    "device": {
+        "reference": "Device/"
+    },
+    "referenceRange": [
+        {
+            "low": {
+                "value": "2",
+                "unit": "Percent",
+                "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+                "value": "6.2",
+                "unit": "Percent",
+                "system": "http://unitsofmeasure.org"
+            },
+            "type": {
+                "coding": [
+                    {
+                        "system": "http://terminology.hl7.org/CodeSystem/referencerange-meaning"
+                    }
+                ]
+            },
+            "appliesTo": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/ValueSet/v3-Race"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "hasMember": [
+        {
+            "reference": "Observation/"
+        },
+        {
+            "reference": "QuestionnaireResponse/"
+        }
+    ],
+    "derivedFrom": [
+        {
+            "reference": "Observation/"
+        },
+        {
+            "reference": "QuestionnaireResponse/"
+        }
+    ],
+    "component": [
+        {
+            "code": {
+                "coding": [
+                    {
+                        "system": "http://loinc.org"
+                    }
+                ]
+            },
+            "valueQuantity": {
+                "system": "http://unitsofmeasure.org"
+            },
+            "dataAbsentReason": {
+                "coding": [
+                    {
+                        "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason"
+                    }
+                ]
+            },
+            "interpretation": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"
+                        }
+                    ]
+                }
+            ],
+            "referenceRange": [
+                {
+                    "low": {
+                        "system": "http://unitsofmeasure.org"
+                    },
+                    "high": {
+                        "system": "http://unitsofmeasure.org"
+                    }
+                }
+            ]
+        }
+    ]
+}

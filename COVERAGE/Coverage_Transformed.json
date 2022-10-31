@@ -1,0 +1,114 @@
+{
+    "resourceType": "Coverage",
+    "text": {
+        "status": "generated"
+    },
+    "identifier": [
+        {
+            "use": "official",
+            "value": "9898A4"
+        },
+        {
+            "use": "official",
+            "value": "9898B4"
+        }
+    ],
+    "status": "active",
+    "type": {
+        "coding": [
+            {
+                "system": "https://terminology.hl7.org/3.1.0/ValueSet-v3-ActCoverageTypeCode.html",
+                "code": "HMO",
+                "display": "health maintenance organization policy"
+            }
+        ]
+    },
+    "policyHolder": {
+        "reference": "Oraganization/",
+        "display": "JOHN SMITH"
+    },
+    "subscriber": {
+        "reference": "Patient/",
+        "display": "JOHN SMITH"
+    },
+    "subscriberId": "11111",
+    "beneficiary": {
+        "reference": "Patient/",
+        "display": "SELF"
+    },
+    "dependent": "0",
+    "relationship": {
+        "coding": [
+            {
+                "system": "http://hl7.org/fhir/ValueSet/subscriber-relationship",
+                "code": "SELF"
+            }
+        ]
+    },
+    "period": {
+        "start": "2022-01-01",
+        "end": "2022-12-31"
+    },
+    "payor": [
+        {
+            "reference": "Organization/",
+            "display": "PleasantVille"
+        }
+    ],
+    "class": [
+        {
+            "type": {
+                "coding": [
+                    {
+                        "system": "http://terminology.hl7.org/CodeSystem/coverage-class",
+                        "code": "PLAN"
+                    }
+                ]
+            },
+            "value": "BG4352",
+            "name": "Full Coverage: Medical, Dental, Pharmacy, Vision, EHC"
+        }
+    ],
+    "order": "1",
+    "network": "BCBS",
+    "costToBeneficiary": [
+        {
+            "type": {
+                "coding": [
+                    {
+                        "system": "http://terminology.hl7.org/CodeSystem/coverage-copay-type",
+                        "code": "gpvisit",
+                        "display": "General Practitioner Visit"
+                    }
+                ]
+            },
+            "valueQuantity": {
+                "value": "25",
+                "code": "USD"
+            },
+            "exception": [
+                {
+                    "type": {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/ex-coverage-financial-exception",
+                                "code": "retired"
+                            }
+                        ]
+                    },
+                    "period": {
+                        "start": "2022-01-01",
+                        "end": "2022-12-31"
+                    }
+                }
+            ]
+        }
+    ],
+    "subrogation": "false",
+    "contract": [
+        {
+            "reference": "Contract/",
+            "display": "Patient"
+        }
+    ]
+}

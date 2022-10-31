@@ -1,0 +1,20 @@
+{
+
+    "Status": "other",
+    "AdmissionDate": "2022-09-07",
+    "AdmitSource": "Smith",
+    "AdmitDiag": "Admission diagnosis",
+    "PatientId": 17812312,
+    "EncounterType": "Urgent",
+    "ReasonCode": "The patient is treated for a tumor.",
+    "EpisodeOfCareId":"e112312",
+    "basedOn":"b145342",
+    "PCP_ID": 11123987,
+    "apptId": 12896798,
+    "reasonref":"r179",
+    "locationId": "l124",
+    "FacilityName": "Childrens hospital",
+    "encId": "123542",
+    "DiagnosisCode": "R50.9"
+
+}
